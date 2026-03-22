@@ -1,0 +1,62 @@
+# Android build outputs
+*.iml
+build/
+app/build/
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Compiled artifacts — should never be committed to source control
+*.apk
+*.aab
+*.aar
+*.ap_
+
+# Gradle runtime cache (regenerated automatically)
+.gradle/
+
+# Local machine config — contains SDK path, do not share
+local.properties
+
+# Scratch / temp files
+deps.txt
+*.log
+*.hprof
+
+# Git merge artifacts
+*.orig
+*.rej
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Release signing — NEVER commit keystores or credentials
+*.jks
+*.keystore
+keystore.properties
+play-service-account.json
+google-services.json
+
+# IntelliJ / Android Studio
+# Keep: .idea/codeStyles/, .idea/compiler.xml, .idea/gradle.xml, .idea/misc.xml, .idea/runConfigurations.xml
+# Ignore: personal state, device-specific, caches
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/shelf/
+.idea/caches/
+.idea/deploymentTargetSelector.xml
+.idea/deviceManager.xml
+.idea/migrations.xml
+.idea/studiobot.xml
+.idea/AndroidProjectSystem.xml
+
+# VS Code — settings may contain machine-specific paths
+.vscode/
+
+# Fastlane (if added later)
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output

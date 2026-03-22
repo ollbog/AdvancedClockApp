@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Advanced Clock</string>
+    <string name="widget_name">Advanced Clock</string>
+    <string name="widget_name_normal">Advanced Clock &#8211; Normal</string>
+    <string name="widget_name_advanced">Advanced Clock &#8211; Advanced</string>
+    <string name="widget_description">Displays time, date, day of week, and time zone</string>
+    <string name="widget_description_advanced">Fully customisable layout using the macro template</string>
+    <string name="settings_title">Widget Settings</string>
+    <string name="show_time">Show Time</string>
+    <string name="show_date">Show Date</string>
+    <string name="show_day_of_week">Show Day of Week</string>
+    <string name="show_timezone">Show Time Zone</string>
+    <string name="show_week_number">Show Week Number</string>
+    <string name="show_month_name">Show Month Name</string>
+    <string name="show_next_alarm">Show Next Alarm</string>
+    <string name="show_seconds">Show Seconds</string>
+    <string name="week_rule">Week Numbering</string>
+    <string name="time_format">Time Format</string>
+    <string name="date_format">Date Format</string>
+    <string name="time_zone">Time Zone</string>
+    <string name="font">Font</string>
+    <string name="font_size">Font Size</string>
+    <string name="accent_color">Accent Color</string>
+    <string name="background_opacity">Background Opacity</string>
+    <string name="reset_defaults">Reset to Defaults</string>
+</resources>

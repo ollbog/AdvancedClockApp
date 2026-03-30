@@ -1,0 +1,18 @@
+Advanced Clock is a powerful, fully customizable home screen widget that shows the time, date, day, week number, and next alarm — all in your chosen style.
+
+FEATURES
+
+• Two widget modes — Normal (clean, compact) and Advanced (fully custom multi-line layout)
+• Custom layout templates — arrange any combination of time, date, day, week number, alarm, and more using simple macros
+• Per-element time zones — display multiple time zones side by side in a single widget
+• Full style control — font size, color, text alignment, and Material You dynamic color support
+• Week number support — ISO, US, or locale-based week numbering
+• Preset system — save and instantly restore your favorite configurations
+• Supports both 12-hour and 24-hour time formats
+• Works on all launchers that support standard Android widgets
+
+PRIVACY
+
+Advanced Clock is completely offline. It collects no personal data, uses no analytics, and requires no account. The only permissions it requests are for scheduling precise widget refresh ticks and restoring the widget after a reboot.
+
+Advanced Clock is free and open source.

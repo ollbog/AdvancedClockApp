@@ -37,6 +37,7 @@ ehthumbs.db
 *.keystore
 keystore.properties
 play-service-account.json
+*-service-account*.json
 google-services.json
 
 # IntelliJ / Android Studio

@@ -49,6 +49,11 @@ jobs:
           PLAY_SERVICE_ACCOUNT_JSON_PATH: play-service-account.json
         run: ./gradlew publishReleaseBundle
 
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+
       - name: Clean up secrets
         if: always()
         run: |

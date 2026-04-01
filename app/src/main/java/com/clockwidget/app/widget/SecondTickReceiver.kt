@@ -5,6 +5,7 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import androidx.glance.appwidget.GlanceAppWidgetManager
 import com.advancedclock.app.data.WidgetSettingsRepository
 import kotlinx.coroutines.CoroutineScope
@@ -54,7 +55,12 @@ class SecondTickReceiver : BroadcastReceiver() {
         fun scheduleNextTick(context: Context) {
             val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
             val nextSecond = (System.currentTimeMillis() / 1000 + 1) * 1000
-            alarmManager.setExact(AlarmManager.RTC, nextSecond, getPendingIntent(context))
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && !alarmManager.canScheduleExactAlarms()) {
+                // Permission not granted — use a ~200ms window as fallback
+                alarmManager.setWindow(AlarmManager.RTC, nextSecond, 200L, getPendingIntent(context))
+            } else {
+                alarmManager.setExact(AlarmManager.RTC, nextSecond, getPendingIntent(context))
+            }
         }
 
         fun cancel(context: Context) {

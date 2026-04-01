@@ -42,12 +42,19 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
+import android.app.AlarmManager
+import android.content.Intent
+import android.os.Build
+import android.provider.Settings
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -67,6 +74,18 @@ fun SettingsScreen(viewModel: SettingsViewModel = viewModel()) {
     var showMacroDocs by remember { mutableStateOf(false) }
     var showAdvancedLayout by remember { mutableStateOf(false) }
     var showPresetsDialog by remember { mutableStateOf(false) }
+    val context = LocalContext.current
+    val alarmManager = remember { context.getSystemService(AlarmManager::class.java) }
+    val exactAlarmLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { /* user returns from system settings; permission may now be granted */ }
+    fun requestExactAlarmIfNeeded() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && !alarmManager.canScheduleExactAlarms()) {
+            exactAlarmLauncher.launch(
+                Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM)
+            )
+        }
+    }
 
     if (showMacroDocs) {
         MacroDocsScreen(onBack = { showMacroDocs = false })
@@ -148,7 +167,10 @@ fun SettingsScreen(viewModel: SettingsViewModel = viewModel()) {
             )
             Spacer(Modifier.height(4.dp))
             OutlinedButton(
-                onClick = { showAdvancedLayout = true },
+                onClick = {
+                    requestExactAlarmIfNeeded()
+                    showAdvancedLayout = true
+                },
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text("Edit Advanced Layout Template →")
@@ -179,9 +201,16 @@ fun SettingsScreen(viewModel: SettingsViewModel = viewModel()) {
                 SizeToggleRow(stringResource(R.string.show_next_alarm), settings.nextAlarmSize) {
                     viewModel.update { copy(nextAlarmSize = it) }
                 }
-                SettingToggle(stringResource(R.string.show_seconds), settings.showSeconds) {
-                    viewModel.update { copy(showSeconds = it) }
+                SettingToggle(stringResource(R.string.show_seconds), settings.showSeconds) { enabled ->
+                    viewModel.update { copy(showSeconds = enabled) }
+                    if (enabled) requestExactAlarmIfNeeded()
                 }
+                Text(
+                    "Requires the \"Alarms & Reminders\" permission to tick precisely every second.",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(start = 4.dp, top = 2.dp, bottom = 4.dp)
+                )
 
             Spacer(Modifier.height(12.dp))
 

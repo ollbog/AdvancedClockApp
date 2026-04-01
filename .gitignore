@@ -15,6 +15,9 @@ captures/
 # Gradle runtime cache (regenerated automatically)
 .gradle/
 
+# Kotlin compiler daemon session files
+.kotlin/
+
 # Local machine config — contains SDK path, do not share
 local.properties
 

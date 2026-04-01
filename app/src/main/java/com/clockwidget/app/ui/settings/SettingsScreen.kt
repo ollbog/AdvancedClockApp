@@ -275,6 +275,16 @@ fun SettingsScreen(viewModel: SettingsViewModel = viewModel()) {
             )
 
             Spacer(Modifier.height(24.dp))
+
+            // --- Build info ---
+            Text(
+                text = "v${com.advancedclock.app.BuildConfig.VERSION_NAME} (${com.advancedclock.app.BuildConfig.GIT_HASH})",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f),
+                modifier = Modifier.align(Alignment.CenterHorizontally)
+            )
+
+            Spacer(Modifier.height(24.dp))
         }
     }
 }

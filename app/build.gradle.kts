@@ -52,7 +52,15 @@ android {
 
     buildFeatures {
         compose = true
+        buildConfig = true
     }
+}
+
+android.defaultConfig {
+    val gitHash = providers.exec {
+        commandLine("git", "rev-parse", "--short", "HEAD")
+    }.standardOutput.asText.get().trim()
+    buildConfigField("String", "GIT_HASH", "\"$gitHash\"")
 }
 
 dependencies {

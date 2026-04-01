@@ -65,7 +65,7 @@ android.defaultConfig {
 
 dependencies {
     // Kotlin STDLIB (for VS Code Language Server)
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:2.1.0")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:2.3.20")
     
     // Core
     implementation("androidx.core:core-ktx:1.15.0")

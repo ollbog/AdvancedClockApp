@@ -100,7 +100,9 @@ dependencies {
 }
 
 play {
-    serviceAccountCredentials.set(file(System.getenv("PLAY_SERVICE_ACCOUNT_JSON_PATH") ?: "play-service-account.json"))
+    serviceAccountCredentials.set(
+        rootProject.file(System.getenv("PLAY_SERVICE_ACCOUNT_JSON_PATH") ?: "play-service-account.json")
+    )
     track.set("internal")
     defaultToAppBundles.set(true)
 }

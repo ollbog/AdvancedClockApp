@@ -214,6 +214,10 @@ private fun ClockWidgetContent(context: Context, settings: WidgetSettings, advan
         } else {
             android.graphics.Color.WHITE
         }
+        val primaryColorProvider = ColorProvider(
+            day = androidx.compose.ui.graphics.Color(primaryColorInt),
+            night = androidx.compose.ui.graphics.Color(primaryColorInt)
+        )
 
         if (advancedMode) {
             val parsedLines = remember(settings.advancedLayoutTemplate) {
@@ -337,7 +341,7 @@ private fun ClockWidgetContent(context: Context, settings: WidgetSettings, advan
                 Text(
                     text = dayFormat.format(now),
                     style = TextStyle(
-                        color = secondaryTextColor,
+                        color = primaryColorProvider,
                         fontSize = (settings.fontSize * settings.dayOfWeekSize).sp,
                         fontWeight = FontWeight.Medium
                     ),
@@ -351,7 +355,7 @@ private fun ClockWidgetContent(context: Context, settings: WidgetSettings, advan
                 Text(
                     text = monthFormat.format(now),
                     style = TextStyle(
-                        color = secondaryTextColor,
+                        color = primaryColorProvider,
                         fontSize = (settings.fontSize * settings.monthNameSize).sp
                     ),
                     modifier = GlanceModifier
@@ -364,7 +368,7 @@ private fun ClockWidgetContent(context: Context, settings: WidgetSettings, advan
                 Text(
                     text = dateFormat.format(now),
                     style = TextStyle(
-                        color = secondaryTextColor,
+                        color = primaryColorProvider,
                         fontSize = (settings.fontSize * settings.dateSize).sp
                     ),
                     modifier = GlanceModifier
@@ -377,7 +381,7 @@ private fun ClockWidgetContent(context: Context, settings: WidgetSettings, advan
                 Text(
                     text = "W$weekNumber",
                     style = TextStyle(
-                        color = secondaryTextColor,
+                        color = primaryColorProvider,
                         fontSize = (settings.fontSize * settings.weekNumberSize).sp
                     )
                 )
@@ -387,7 +391,7 @@ private fun ClockWidgetContent(context: Context, settings: WidgetSettings, advan
                 Text(
                     text = timeZone.getDisplayName(JavaTextStyle.SHORT, locale),
                     style = TextStyle(
-                        color = secondaryTextColor,
+                        color = primaryColorProvider,
                         fontSize = (settings.fontSize * settings.timeZoneSize).sp
                     )
                 )
@@ -400,7 +404,7 @@ private fun ClockWidgetContent(context: Context, settings: WidgetSettings, advan
                     Text(
                         text = "⏰ ${alarmTimeFormatter.format(alarmTime)}",
                         style = TextStyle(
-                            color = secondaryTextColor,
+                            color = primaryColorProvider,
                             fontSize = (settings.fontSize * settings.nextAlarmSize).sp
                         ),
                         modifier = GlanceModifier
